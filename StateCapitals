@@ -1,0 +1,105 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
+package arraysortingandhashmapsassignment;
+import java.util.*;
+import java.lang.*;
+
+/**
+ * @author taelr
+ */
+public class ArraySortingAndHashmapsAssignment {
+
+    /**
+     * @param args the command line arguments
+     */
+    
+    /*Data Structures and Algorithms
+     * This program asks a user to input the capitals of US states and reports whether the user's input is correct
+     * user's input is not case-sensitive*/
+    
+    public static void main(String[] args) {
+        //setup scanner to collect user input
+        Scanner scanner = new Scanner(System.in);
+        
+        //declare varible to count correct number of guesses
+        int count = 0;
+        int questionNumber = 1;
+        
+        // Create two-dimentional array with US states names and capitals
+        String [][] usStateCapitals = {
+            {"Alabama", "Montgomery"}, {"Alaska", "Juneau"}, {"Arizona", "Phoenix"},
+            {"Arkansas", "Little Rock"}, {"California", "Sacramento"},
+            {"Colorado", "Denver"}, {"Connecticut", "Hartford"}, 
+            {"Delaware", "Dover"}, {"Florida", "Tallahassee"}, 
+            {"Georgia", "Atlanta"},{"Hawaii", "Honolulu"}, {"Idaho", "Boise"},
+            {"Illinois", "Springfield"}, {"Indiana", "Indianapolis"},
+            {"Iowa", "Des Moines"}, {"Kansas", "Topeka"}, {"Kentucky","Frankfort"}, 
+            {"Louisiana", "Baton Rouge"}, {"Maine", "Augusta"}, 
+            {"Maryland", "Annapolis"}, {"Massachusetts", "Boston"}, 
+            {"Michigan", "Lansing"}, {"Minnesota", "Saint Paul"}, 
+            {"Mississippi", "Jackson"}, {"Missouri", "Jefferson City"}, 
+            {"Montana", "Helena"}, {"Nebraska", "Lincoln"}, 
+            {"Nevada", "Carson City"}, {"New Hampshire", "Concord"}, 
+            {"New Jersey", "Trenton"}, {"New Mexico", "Santa Fe"}, 
+            {"New York", "Albany"}, {"North Carolina", "Raleigh"}, 
+            {"North Dakota", "Bismarck"},{"Ohio", "Columbus"},
+            {"Oklahoma", "Oklahoma City"}, {"Oregon", "Salem"}, 
+            {"Pennsylvania", "Harrisburg"}, {"Rhode Island", "Providence"}, 
+            {"South Carolina", "Columbia"}, {"South Dakota", "Pierre"}, 
+            {"Tennessee", "Nashville"}, {"Texas", "Austin"}, 
+            {"Utah", "Salt Lake City"}, {"Vermont", "Montpelier"}, 
+            {"Virginia", "Richmond"}, {"Washington", "Olympia"}, 
+            {"West Virginia", "Charleston"}, {"Wisconsin", "Madison"}, 
+            {"Wyoming", "Cheyenne"}};
+        
+       //Display current contents of array with states and capitals
+       System.out.println("States Capitals");
+       for(int i = 0; i < usStateCapitals.length; i++){
+            System.out.println(i+1 + ": " + usStateCapitals[i][0] + " - " + usStateCapitals[i][1]);
+       }
+       
+       //use a bubbble sort to sort the array contents by capital
+       String []temp;
+       for(int i = 0; i < usStateCapitals.length - 1; i++){
+           for(int j = 0; j < usStateCapitals.length - 1; j++){
+                if(usStateCapitals[j][1].compareTo(usStateCapitals[j+1][1]) > 0){                 
+                   temp = usStateCapitals[j];            
+                   usStateCapitals[j] = usStateCapitals[j+1];
+                   usStateCapitals[j+1] = temp;   
+                }   
+           }
+       }
+       
+       //display array sorted by capitals
+       System.out.println("\nSorted By Capital");
+       for(int i = 0; i < usStateCapitals.length; i++){
+            System.out.println(i+1 + ": " + usStateCapitals[i][1] + ", " + usStateCapitals[i][0]);
+       }
+       
+       //explain instructions to the user
+        System.out.println("\n***********************************************************");
+        System.out.println("Guess the capital of the state shown, press enter when done.");
+        System.out.println("***********************************************************");
+       
+       //repeatedly ask user to input state capital for each given state
+       for(int i = 0; i < usStateCapitals.length; i++){
+           System.out.print(questionNumber + ".) What is the capital of " + usStateCapitals[i][0] + "?:  ");
+           String guess = scanner.nextLine();
+           
+           //check if guess matches correct answer
+           if(usStateCapitals[i][1].toLowerCase().equals(guess.toLowerCase())){
+               System.out.println("\t-Correct!");
+               count++;
+           } else {
+               System.out.println("\t-Incorrect the answer is " + usStateCapitals[i][1]);
+           }
+           questionNumber++;
+       }
+       
+       //Display total correct count
+       System.out.println("\nYou got " + count + " Correct!");
+    }
+    
+}
